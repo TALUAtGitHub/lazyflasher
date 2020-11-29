@@ -34,7 +34,7 @@ abort() {
 
 cleanup() {
 	[ "$zip" ] && rm /tmp/console
-	umount /system
+	umount /system_root
 }
 
 extract() {
@@ -94,7 +94,7 @@ cd "$tmp"
 	[ $match != 1 ] && abort "Unsupported device"
 }
 
-mount /system
+mount /system_root
 # mount /data
 
 setperm 0755 0755 "$bin"
