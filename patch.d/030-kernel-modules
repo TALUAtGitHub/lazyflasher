@@ -52,6 +52,6 @@ while read -r kmod; do
 done < modules.layout
 
 setperm 0755 0644 /system_root/system/vendor/lib/modules
-chcon -R -h "u:object_r:system_file:s0" /system_root/system/vendor/lib/modules
+chcon -R -h "u:object_r:vendor_file:s0" /system_root/system/vendor/lib/modules
 
 exit 0
