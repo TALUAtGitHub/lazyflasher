@@ -7,18 +7,6 @@
 	exit 0
 }
 
-print "Installing /lib/modules symlink"
-mkdir -p lib
-chmod 0755 lib
-rm -rf lib/modules
-ln -s /system_root/system/vendor/lib/modules lib/modules
-
-print "Installing /sbin/modprobe symlink"
-mkdir -p sbin
-chmod 0755 sbin
-rm -rf sbin/modprobe
-ln -s /system_root/system/xbin/busybox sbin/modprobe
-
 cd "$tmp"
 
 print "Gathering original module layout..."
