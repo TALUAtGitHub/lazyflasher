@@ -52,6 +52,6 @@ $tmp - full path to installation extraction root (ex. /tmp/kernel-flasher)
 $ramdisk - full path to extracted ramdisk root (current directory of patch.d scripts)
 $ramdisk_patch - full path to new ramdisk files (applied automatically over the current ramdisk)
 $split_img - full path to extracted contents of boot image (including cmdline)
-$modules - full path to directory containing kernel modules for install to /system_root/system/lib/modules
+$modules - full path to directory containing kernel modules for install to /system_root/system/vendor/lib/modules
 $bin - full path to recovery executable binaries (ex. unpackbootimg, mkbootimg)
 ```

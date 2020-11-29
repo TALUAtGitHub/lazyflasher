@@ -11,7 +11,7 @@ print "Installing /lib/modules symlink"
 mkdir -p lib
 chmod 0755 lib
 rm -rf lib/modules
-ln -s /system_root/system/lib/modules lib/modules
+ln -s /system_root/system/vendor/lib/modules lib/modules
 
 print "Installing /sbin/modprobe symlink"
 mkdir -p sbin
@@ -22,7 +22,7 @@ ln -s /system_root/system/xbin/busybox sbin/modprobe
 cd "$tmp"
 
 print "Gathering original module layout..."
-find /system_root/system/lib/modules -name "*.ko" -maxdepth 3 > modules.list
+find /system_root/system/vendor/lib/modules -name "*.ko" -maxdepth 3 > modules.list
 > modules.layout
 while read -r kmod; do
 	kmod_name=$(basename "$(readlink "$kmod")")
@@ -30,18 +30,18 @@ while read -r kmod; do
 done < modules.list
 
 print "Removing old kernel modules..."
-rm -rf /system_root/system/lib/modules
+rm -rf /system_root/system/vendor/lib/modules
 
 print "Installing new kernel modules..."
-cp -r modules /system_root/system/lib/
+cp -r modules /system_root/system/vendor/lib/
 
 print "Creating module symlinks..."
 
-# Create /system_root/system/lib/modules/*.ko symlinks for each module installed
-find /system_root/system/lib/modules -type f -name "*.ko" > modules.installed
+# Create /system_root/system/vendor/lib/modules/*.ko symlinks for each module installed
+find /system_root/system/vendor/lib/modules -type f -name "*.ko" > modules.installed
 while read -r kmod_installed; do
 	kmod_name=$(basename "$kmod_installed")
-	kmod_link="/system_root/system/lib/modules/$kmod_name"
+	kmod_link="/system_root/system/vendor/lib/modules/$kmod_name"
 	ln -s "$kmod_installed" "$kmod_link"
 	echo "Symlinked module (install): $kmod_link -> $kmod_installed"
 done < modules.installed
@@ -63,7 +63,7 @@ while read -r kmod; do
 	echo "Symlinked module (layout): $kmod_link -> $kmod_installed"
 done < modules.layout
 
-setperm 0755 0644 /system_root/system/lib/modules
-chcon -R -h "u:object_r:system_file:s0" /system_root/system/lib/modules
+setperm 0755 0644 /system_root/system/vendor/lib/modules
+chcon -R -h "u:object_r:system_file:s0" /system_root/system/vendor/lib/modules
 
 exit 0
