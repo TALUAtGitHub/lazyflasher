@@ -6,7 +6,7 @@ console=$(cat /tmp/console)
 [ "$console" ] || console=/proc/$$/fd/1
 
 cd "$tmp"
-. config.sh
+source config.sh
 
 cmdline=$split_img/cmdline
 default_prop=$ramdisk/default.prop

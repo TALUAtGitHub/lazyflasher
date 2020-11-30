@@ -73,7 +73,7 @@ print "#######################################"
 }
 cd "$tmp"
 
-. config.sh
+source config.sh
 
 [ "$device_names" ] && {
 	if ! command -v getprop; then

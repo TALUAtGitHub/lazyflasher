@@ -7,7 +7,7 @@ console=$(cat /tmp/console)
 [ "$console" ] || console=/proc/$$/fd/1
 
 cd "$tmp"
-. config.sh
+source config.sh
 
 chmod -R 755 "$bin"
 rm -rf "$ramdisk" "$split_img"
