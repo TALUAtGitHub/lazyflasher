@@ -119,7 +119,6 @@ determine_ramdisk_format() {
 		*) abort "Unknown ramdisk compression format ($magicbytes)" ;;
 	esac
 	print "Detected ramdisk compression format: $rdformat"
-	command -v $decompress || abort "Unable to find archiver for $rdformat"
 
 	[ "$ramdisk_compression" ] && rdformat=$ramdisk_compression
 	case "$rdformat" in
@@ -134,7 +133,6 @@ determine_ramdisk_format() {
 			abort "XZ ramdisk compression is currently unsupported" ;;
 		*) abort "Unknown ramdisk compression format ($rdformat)" ;;
 	esac
-	command -v $compress || abort "Unable to find archiver for $rdformat"
 }
 
 # extract the old ramdisk contents
